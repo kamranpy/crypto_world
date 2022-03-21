@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   HomeOutlined,
-  MoneyCollectOutlined,
-  BulbOutlined,
-  FundOutlined,
+  GlobalOutlined,
+  AlertOutlined,
+  FundProjectionScreenOutlined,
   MenuOutlined,
 } from "@ant-design/icons";
 
@@ -25,13 +25,13 @@ const Navbar = () => {
         <Menu.Item icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
-        <Menu.Item icon={<FundOutlined />}>
+        <Menu.Item icon={<FundProjectionScreenOutlined />}>
           <Link to="/cryptocurrencies">Cryptocurrencies</Link>
         </Menu.Item>
-        <Menu.Item icon={<MoneyCollectOutlined />}>
+        <Menu.Item icon={<GlobalOutlined />}>
           <Link to="/exchanges">Exchanges</Link>
         </Menu.Item>
-        <Menu.Item icon={<BulbOutlined />}>
+        <Menu.Item icon={<AlertOutlined />}>
           <Link to="/news">News</Link>
         </Menu.Item>
       </Menu>

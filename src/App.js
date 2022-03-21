@@ -1,6 +1,6 @@
 import React from "react";
-import { Switch, Route, Routes, Link } from "react-router-dom";
-import { Layout, Typography, Space } from "antd";
+import {Route, Routes} from "react-router-dom";
+import { Layout } from "antd";
 
 import {
   Navbar,
@@ -9,10 +9,9 @@ import {
   CryptoCurrencies,
   CryptoDetails,
   News,
+  Footer,
 } from "./Components";
 import "./App.css";
-
-const { Header, Footer, Sider, Content } = Layout;
 
 const App = () => {
   return (
@@ -34,18 +33,7 @@ const App = () => {
         </Layout>
 
         <div className="footer">
-          <Typography.Title
-            level={5}
-            style={{ color: "white", textAlign: "center" }}
-          >
-            Crypto World <br />
-            All rights reserved
-          </Typography.Title>
-          <Space>
-            <Link to="/">Home</Link>
-            <Link to="/exchanges">Exchanges</Link>
-            <Link to="/news">News</Link>
-          </Space>
+          <Footer />
         </div>
       </div>
     </div>
