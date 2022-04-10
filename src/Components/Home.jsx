@@ -4,11 +4,13 @@ import { Typography, Row, Col, Statistic } from "antd";
 import { Link } from "react-router-dom";
 
 import { useGetCryptoQuery } from "../services/CryptoAPI";
+import CryptoCurrencies from "./CryptoCurrencies";
+import News from "./News";
 
 const { Title } = Typography;
 
 function Home() {
-  const { data, isFetching } = useGetCryptoQuery();
+  const { data, isFetching } = useGetCryptoQuery(10);
 
   const globalStats = data?.data?.stats;
 
@@ -34,8 +36,20 @@ function Home() {
         </Col>
         <Col span={12}>
           <Statistic title="Total Markets" value={millify(globalStats.totalMarkets)} />
+          {/* millify is used to convert numbers into human
+          readable format such as it shows 5M instead of 5000000 */}
         </Col>
       </Row>
+      <div className="home-heading-container">
+        <Title level={2} className="home-title"> Top 10 Crypto Currencies</Title>
+        <Title level={3} className="show-more"><Link to="/cryptocurrencies">View More</Link></Title>
+      </div>
+      <CryptoCurrencies simplified /> {/* simplified is used to show only 10 records instead of all */}
+      <div className="home-heading-container">
+        <Title level={2} className="home-title">Crypto News</Title>
+        <Title level={3} className="show-more"><Link to="/news">View More</Link></Title>
+      </div>
+      <News simplified /> {/* simplified is used to show only latest news instead of all news */}
     </>
   );
 }
