@@ -4,6 +4,7 @@ import moment from "moment";
 
 import { useGetNewsQuery } from "../services/NewAPI";
 import { useGetCryptoQuery } from "../services/CryptoAPI";
+import Load from "./Load";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -20,7 +21,7 @@ function News({ simplified }) {
   });
   const { data } = useGetCryptoQuery(100);
 
-  if (!cryptoNews?.value) return "Loading Crypto News...";
+  if (!cryptoNews?.value) return <Load />;
 
   return (
     <Row gutter={[24, 24]}>

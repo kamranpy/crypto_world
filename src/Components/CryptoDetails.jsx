@@ -15,10 +15,14 @@ import {
   ThunderboltOutlined,
 } from "@ant-design/icons";
 
-import { useGetCryptoDetailsQuery } from "../services/CryptoAPI";
+import {
+  useGetCryptoDetailsQuery,
+  useGetCryptoHistoryQuery,
+} from "../services/CryptoAPI";
+import LineChart from "./LineChart";
+import Load from "./Load";
 
 const { Title, Text } = Typography;
-const { Option } = Select;
 
 function CryptoDetails() {
   const { coinId } = useParams();
@@ -29,9 +33,7 @@ function CryptoDetails() {
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const cryptoDetails = data?.data?.coin;
 
-  if (isFetching) return "Loading Coin Details";
-
-  const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
+  if (isFetching) return <Load />;
 
   const stats = [
     {
@@ -44,7 +46,9 @@ function CryptoDetails() {
     { title: "Rank", value: cryptoDetails?.rank, icon: <NumberOutlined /> },
     {
       title: "24h Volume",
-      value: `$ ${cryptoDetails["24hVolume"] && millify(cryptoDetails["24hVolume"])}`,
+      value: `$ ${
+        cryptoDetails["24hVolume"] && millify(cryptoDetails["24hVolume"])
+      }`,
       icon: <ThunderboltOutlined />,
     },
     {
@@ -58,7 +62,7 @@ function CryptoDetails() {
       title: "All-time-high",
       value: `$ ${
         cryptoDetails?.allTimeHigh?.price &&
-        millify(cryptoDetails?.allTimeHigh?.price, {precision: 8})
+        millify(cryptoDetails?.allTimeHigh?.price, { precision: 8 })
       }`,
       icon: <TrophyOutlined />,
     },
@@ -76,7 +80,7 @@ function CryptoDetails() {
       icon: <MoneyCollectOutlined />,
     },
     {
-      title: "Aprroved Supply",
+      title: "Aproved Supply",
       value: cryptoDetails?.supply?.confirmed ? (
         <CheckOutlined />
       ) : (
@@ -112,17 +116,11 @@ function CryptoDetails() {
           and Supply.
         </p>
       </Col>
-      <Select
-        defaultValue="7d"
-        className="select-timeperiod"
-        placeholder="Select Period"
-        onChange={(value) => setTimePeriod(value)}
-      >
-        {time.map((date) => (
-          <Option key={date}> {date} </Option>
-        ))}
-      </Select>
-
+      {/* <LineChart
+        coinHistory={coinHistory}
+        currentPrice={millify(cryptoDetails.price)}
+        coinName={cryptoDetails.name}
+        /> */}
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
@@ -146,11 +144,11 @@ function CryptoDetails() {
         <Col className="other-stats-info">
           <Col className="coin-value-statistics-heading">
             <Title level={3} className="coin-details-heading">
-              Global Statistics
+              Other Statistics
             </Title>
             <p>
-              A detailed overview of showing stats about all
-              cryptocurrencies.asd
+              A detailed overview of showing other stats about{" "}
+              {cryptoDetails.name}
             </p>
           </Col>
           {genericStats.map(({ icon, title, value }) => (
@@ -161,6 +159,29 @@ function CryptoDetails() {
               </Col>
               <Text className="stats">{value}</Text>
             </Col>
+          ))}
+        </Col>
+      </Col>
+      <Col className="coin-desc-link">
+        <Row className="coin-desc">
+          <Title level={3} className="coin-details-heading">
+            Some Details about {cryptoDetails.name}
+          </Title>
+          {HTMLReactParser(cryptoDetails.description)}
+        </Row>
+        <Col className="coin-links">
+          <Title level={3} className="coin-details-heading">
+            Some Useful Links
+          </Title>
+          {cryptoDetails.links.map((link) => (
+            <Row className="coin-link" key={link.name}>
+              <Title level={5} className="link-name">
+                {link.type}
+              </Title>
+              <a href={link.url} target="_blank" rel="noreferrer">
+                {link.name}
+              </a>
+            </Row>
           ))}
         </Col>
       </Col>

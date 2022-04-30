@@ -4,7 +4,6 @@ import { Layout } from "antd";
 
 import {
   Navbar,
-  Exchanges,
   Home,
   CryptoCurrencies,
   CryptoDetails,
@@ -24,7 +23,6 @@ const App = () => {
           <div className="routes">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/exchanges" element={<Exchanges />} />
               <Route path="/cryptocurrencies" element={<CryptoCurrencies />} />
               <Route path="/crypto/:coinId" element={<CryptoDetails />} />
               <Route path="/news" element={<News />} />
