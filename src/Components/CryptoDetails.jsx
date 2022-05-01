@@ -24,9 +24,7 @@ const { Title, Text } = Typography;
 
 function CryptoDetails() {
   const { coinId } = useParams();
-  {
-    /* useParams() takes the ID from URL and lets us use it as a variable */
-  }
+  {/* useParams() takes the ID from URL and lets us use it as a variable */}
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const cryptoDetails = data?.data?.coin;
 
@@ -113,11 +111,6 @@ function CryptoDetails() {
           and Supply.
         </p>
       </Col>
-      {/* <LineChart
-        coinHistory={coinHistory}
-        currentPrice={millify(cryptoDetails.price)}
-        coinName={cryptoDetails.name}
-        /> */}
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
