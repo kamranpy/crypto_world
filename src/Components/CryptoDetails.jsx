@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
-import { Col, Row, Typography, Select } from "antd";
+import { Col, Row, Typography } from "antd";
 import {
   MoneyCollectOutlined,
   DollarCircleOutlined,
@@ -17,9 +17,7 @@ import {
 
 import {
   useGetCryptoDetailsQuery,
-  useGetCryptoHistoryQuery,
 } from "../services/CryptoAPI";
-import LineChart from "./LineChart";
 import Load from "./Load";
 
 const { Title, Text } = Typography;
@@ -29,7 +27,6 @@ function CryptoDetails() {
   {
     /* useParams() takes the ID from URL and lets us use it as a variable */
   }
-  const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const cryptoDetails = data?.data?.coin;
 

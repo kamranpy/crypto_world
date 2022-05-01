@@ -1,5 +1,4 @@
-import { Typography, Space } from "antd";
-import { Link } from "react-router-dom";
+import { Typography } from "antd";
 
 const Footer = () => {
   return (
