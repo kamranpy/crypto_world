@@ -24,7 +24,6 @@ const { Title, Text } = Typography;
 
 function CryptoDetails() {
   const { coinId } = useParams();
-  {/* useParams() takes the ID from URL and lets us use it as a variable */}
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const cryptoDetails = data?.data?.coin;
 

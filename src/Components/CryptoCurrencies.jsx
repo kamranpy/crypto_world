@@ -12,9 +12,6 @@ function CryptoCurrencies({ simplified }) {
   const [cryptos, setCryptos] = useState([]);
   const [searchCurrency, setSearchCurrency] = useState("");
 
-  {
-    /* useEffect accepts a function and an array */
-  }
   useEffect(() => {
     const filteredData = cryptoList?.data?.coins.filter((coin) =>
       coin.name.toLowerCase().includes(searchCurrency.toLocaleLowerCase())
@@ -53,7 +50,7 @@ function CryptoCurrencies({ simplified }) {
               {/* For dynamically linking */}
               <Card
                 title={`${currency.rank}. ${currency.name}`}
-                extra={<img className="crypto-image" src={currency.iconUrl} />}
+                extra={<img className="crypto-image" src={currency.iconUrl} alt={currency.name} />}
                 hoverable
               >
                 <p>
