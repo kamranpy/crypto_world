@@ -1,6 +1,6 @@
 # Cryptocurrency Home!
 
-Live Project @(https://626dd23bee570c0008e628b6--lucent-starburst-f6f55d.netlify.app/)
+Live Project Demo [Click here!](https://626dd23bee570c0008e628b6--lucent-starburst-f6f55d.netlify.app/)
 
 ## Available Scripts
 
